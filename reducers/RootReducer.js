@@ -1,8 +1,10 @@
-import AddItem from './AddItem';
+import itemArray from './AddItem';
+import counter from './Counter';
 import * as Redux from 'redux';
 
 const Root = Redux.combineReducers({
-    itemArray: AddItem,
+    itemArray,
+    counter,
 });
 
 export default Root;

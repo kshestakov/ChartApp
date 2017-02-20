@@ -4,9 +4,10 @@ import {
     View,
     TextInput,
     Button,
+    Alert,
 } from 'react-native';
 
-import BarChart from '../BarChart/BarChart';
+import BarChartContainer from '../../containers/BarChartContainer';
 
 export default class App extends Component {
     constructor(props) {
@@ -16,15 +17,21 @@ export default class App extends Component {
         };
     }
 
-    
+    addItem = () => {
+        this.state.text.trim()
+            ? this.props.addItem(this.state.text)
+            : Alert.alert('Ошибка', 'Введите значение');
+    }
+
     render() {
         return (
-            <View>
+            <View style={{paddingHorizontal: 5}}>
                 <TextInput 
                     placeholder='Введите текст'
                     onChangeText={text => this.setState({text})}
                 />
-                <Button onPress={() => {this.props.addItem(this.state.text)}} title='Добавить'></Button>
+                <Button onPress={this.addItem} title='Добавить'></Button>
+                <BarChartContainer/>
             </View>
         );
     }
